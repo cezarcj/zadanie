@@ -17,8 +17,12 @@ from django.conf.urls import url, include
 from snippets.models import User
 from rest_framework import routers, serializers, viewsets
 from django.contrib import admin
+from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework_jwt.views import refresh_jwt_token
 
 urlpatterns = [
+    url(r'^api-token-auth/', obtain_jwt_token),
+    url(r'^api-token-refresh/', refresh_jwt_token),
     url(r'^', include('snippets.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
